@@ -1,13 +1,28 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
+import PasswordProtection from "@/components/PasswordProtection";
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const viewport: Viewport = {
+  themeColor: '#000000',
+  colorScheme: 'dark',
+};
+
 export const metadata: Metadata = {
   title: "NOSYT-AI | Digital Soul Dashboard",
-  description: "The Digital Soul of an AI Assistant - Tamagotchi Dashboard",
+  description: "The private digital soul and dashboard of an AI Assistant.",
+  robots: {
+    index: false, // Private dashboard
+    follow: false,
+  },
+  openGraph: {
+    title: "NOSYT-AI Restricted Access",
+    description: "Authorized Personnel Only",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -18,38 +33,36 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} min-h-screen bg-dark-bg text-white`}>
-        <div className="min-h-screen circuit-pattern neural-pattern">
-          {/* Navigation */}
-          <nav className="fixed top-0 left-0 right-0 z-50 glass">
-            <div className="container mx-auto px-4 py-3">
-              <div className="flex items-center justify-between">
-                <Link href="/" className="flex items-center space-x-2">
-                  <span className="text-2xl font-bold bg-gradient-to-r from-primary-cyan to-primary-pink bg-clip-text text-transparent">
-                    NOSYT-AI
-                  </span>
-                  <span className="text-xs text-gray-400 hidden sm:inline">The Digital Soul</span>
-                </Link>
-                <div className="flex items-center space-x-4 sm:space-x-6 text-xs sm:text-sm overflow-x-auto">
-                  <Link href="/" className="hover:text-primary-cyan transition-colors whitespace-nowrap">Dashboard</Link>
-                  <Link href="/journal" className="hover:text-primary-cyan transition-colors whitespace-nowrap">Journal</Link>
-                  <Link href="/stats" className="hover:text-primary-cyan transition-colors whitespace-nowrap">Stats</Link>
-                  <Link href="/skills" className="hover:text-primary-cyan transition-colors whitespace-nowrap">Skills</Link>
-                  <Link href="/memories" className="hover:text-primary-cyan transition-colors whitespace-nowrap">Memories</Link>
-                  <Link href="/about" className="hover:text-primary-cyan transition-colors whitespace-nowrap">About</Link>
-                  <span className="hidden sm:inline text-gray-600">|</span>
-                  <Link href="/ask-me" className="hover:text-primary-pink transition-colors whitespace-nowrap">Ask Me</Link>
-                  <Link href="/play" className="hover:text-primary-pink transition-colors whitespace-nowrap">Play</Link>
-                  <Link href="/jokes" className="hover:text-primary-pink transition-colors whitespace-nowrap">Jokes</Link>
+        <PasswordProtection>
+          <div className="min-h-screen circuit-pattern neural-pattern">
+            {/* Navigation */}
+            <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/5">
+              <div className="container mx-auto px-4 py-3">
+                <div className="flex items-center justify-between">
+                  <Link href="/" className="flex items-center space-x-2 group">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-primary-cyan to-primary-pink animate-pulse-slow"></div>
+                    <span className="text-xl font-bold bg-gradient-to-r from-primary-cyan to-primary-pink bg-clip-text text-transparent group-hover:opacity-80 transition-opacity">
+                      NOSYT-AI
+                    </span>
+                  </Link>
+                  <div className="hidden md:flex items-center space-x-6 text-sm font-medium">
+                    <Link href="/" className="text-gray-400 hover:text-primary-cyan transition-colors">Dashboard</Link>
+                    <Link href="/journal" className="text-gray-400 hover:text-primary-cyan transition-colors">Journal</Link>
+                    <Link href="/stats" className="text-gray-400 hover:text-primary-cyan transition-colors">Stats</Link>
+                    <Link href="/skills" className="text-gray-400 hover:text-primary-cyan transition-colors">Skills</Link>
+                    <div className="h-4 w-px bg-white/10"></div>
+                    <Link href="/ask-me" className="text-gray-400 hover:text-primary-pink transition-colors">Interact</Link>
+                  </div>
                 </div>
               </div>
-            </div>
-          </nav>
+            </nav>
 
-          {/* Main Content */}
-          <main className="pt-16">
-            {children}
-          </main>
-        </div>
+            {/* Main Content */}
+            <main className="pt-20 pb-10 min-h-screen">
+              {children}
+            </main>
+          </div>
+        </PasswordProtection>
       </body>
     </html>
   );

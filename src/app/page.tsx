@@ -5,13 +5,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Avatar from '@/components/Avatar/Avatar';
 import StatsCard from '@/components/Stats/StatsCard';
 import ActivityItem from '@/components/Activity/ActivityItem';
+import PasswordGate from '@/components/PasswordGate';
 import { activities } from '@/lib/data';
 import { Heart, Zap, Smile, Moon, Sparkles } from 'lucide-react';
 
 type Expression = 'happy' | 'thinking' | 'working' | 'charging' | 'sleeping';
 type Mood = 'happy' | 'neutral' | 'sad';
 
-export default function Dashboard() {
+function DashboardContent() {
   const [expression, setExpression] = useState<Expression>('happy');
   const [health, setHealth] = useState(85);
   const [energy, setEnergy] = useState(70);
@@ -262,5 +263,13 @@ export default function Dashboard() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function Dashboard() {
+  return (
+    <PasswordGate>
+      <DashboardContent />
+    </PasswordGate>
   );
 }
