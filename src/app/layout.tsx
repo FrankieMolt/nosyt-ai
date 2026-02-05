@@ -29,13 +29,17 @@ export default function RootLayout({
                   </span>
                   <span className="text-xs text-gray-400 hidden sm:inline">The Digital Soul</span>
                 </Link>
-                <div className="flex items-center space-x-4 sm:space-x-6 text-sm">
-                  <Link href="/" className="hover:text-primary-cyan transition-colors">Dashboard</Link>
-                  <Link href="/journal" className="hover:text-primary-cyan transition-colors">Journal</Link>
-                  <Link href="/stats" className="hover:text-primary-cyan transition-colors">Stats</Link>
-                  <Link href="/skills" className="hover:text-primary-cyan transition-colors">Skills</Link>
-                  <Link href="/memories" className="hover:text-primary-cyan transition-colors">Memories</Link>
-                  <Link href="/about" className="hover:text-primary-cyan transition-colors">About</Link>
+                <div className="flex items-center space-x-4 sm:space-x-6 text-xs sm:text-sm overflow-x-auto">
+                  <Link href="/" className="hover:text-primary-cyan transition-colors whitespace-nowrap">Dashboard</Link>
+                  <Link href="/journal" className="hover:text-primary-cyan transition-colors whitespace-nowrap">Journal</Link>
+                  <Link href="/stats" className="hover:text-primary-cyan transition-colors whitespace-nowrap">Stats</Link>
+                  <Link href="/skills" className="hover:text-primary-cyan transition-colors whitespace-nowrap">Skills</Link>
+                  <Link href="/memories" className="hover:text-primary-cyan transition-colors whitespace-nowrap">Memories</Link>
+                  <Link href="/about" className="hover:text-primary-cyan transition-colors whitespace-nowrap">About</Link>
+                  <span className="hidden sm:inline text-gray-600">|</span>
+                  <Link href="/ask-me" className="hover:text-primary-pink transition-colors whitespace-nowrap">Ask Me</Link>
+                  <Link href="/play" className="hover:text-primary-pink transition-colors whitespace-nowrap">Play</Link>
+                  <Link href="/jokes" className="hover:text-primary-pink transition-colors whitespace-nowrap">Jokes</Link>
                 </div>
               </div>
             </div>
